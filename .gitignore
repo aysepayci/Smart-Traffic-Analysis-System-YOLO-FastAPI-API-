@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Env
+.env
+venv/
+
+# YOLO outputs
+runs/
+outputs/
+
+# Models (büyük dosya!)
+*.pt
+*.onnx
+
+# Dataset
+ml/data/
+ml/datasets/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Frontend
+node_modules/
+build/
+
+# Docker
+*.tar

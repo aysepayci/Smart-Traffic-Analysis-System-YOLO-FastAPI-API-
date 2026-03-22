@@ -92,3 +92,17 @@ def hourly_analysis():
     db.close()
 
     return [{"hour": int(h), "avg_density": float(d)} for h, d in data]
+
+from fastapi import FastAPI
+from backend.traffic import analyze_traffic
+
+app = FastAPI()
+
+@app.get("/")
+def home():
+    return {"message": "API çalışıyor"}
+
+@app.get("/traffic")
+def get_traffic():
+    data = analyze_traffic()
+    return data
