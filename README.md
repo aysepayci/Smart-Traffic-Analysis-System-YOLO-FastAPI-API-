@@ -71,7 +71,7 @@ scripts/     → helper scripts
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/your-username/smart-traffic-yolo.git
+git clone https://github.com/aysepayci/smart-traffic-yolo.git
 cd smart-traffic-yolo
 ```
 
