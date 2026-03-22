@@ -9,3 +9,8 @@ class TrafficData(Base):
     density_score = Column(Float)
     traffic_level = Column(String)
     weather = Column(String)
+
+from sqlalchemy import Column, Integer, Float, String, DateTime
+from datetime import datetime
+
+timestamp = Column(DateTime, default=datetime.utcnow)

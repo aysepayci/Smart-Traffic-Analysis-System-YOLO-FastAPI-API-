@@ -56,3 +56,39 @@ def get_records():
     db.close()
 
     return data
+
+from sqlalchemy import func
+
+@app.get("/analytics")
+def get_analytics():
+    db = SessionLocal()
+
+    total_records = db.query(TrafficData).count()
+    avg_density = db.query(func.avg(TrafficData.density_score)).scalar()
+
+    high_traffic = db.query(TrafficData).filter(
+        TrafficData.traffic_level == "high"
+    ).count()
+
+    db.close()
+
+    return {
+        "total_records": total_records,
+        "average_density": round(avg_density or 0, 2),
+        "high_traffic_count": high_traffic
+    }
+
+from sqlalchemy import extract
+
+@app.get("/analytics/hourly")
+def hourly_analysis():
+    db = SessionLocal()
+
+    data = db.query(
+        extract('hour', TrafficData.timestamp).label('hour'),
+        func.avg(TrafficData.density_score)
+    ).group_by('hour').all()
+
+    db.close()
+
+    return [{"hour": int(h), "avg_density": float(d)} for h, d in data]
