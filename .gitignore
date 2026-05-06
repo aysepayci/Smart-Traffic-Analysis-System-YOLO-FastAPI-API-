@@ -36,3 +36,9 @@ build/
 
 # Docker
 *.tar
+
+venv/
+__pycache__/
+*.pyc
+yolov8n.pt
+.env
